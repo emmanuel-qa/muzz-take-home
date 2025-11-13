@@ -44,6 +44,7 @@ jobs:
           arch: x86_64
           target: default
           profile: Nexus 6
+          emulator-boot-timeout: 300
 
 
           script: ./gradlew connectedAndroidTest
