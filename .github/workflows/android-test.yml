@@ -8,9 +8,7 @@ on:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -22,7 +20,6 @@ jobs:
           distribution: 'temurin'
 
       - name: Set up Gradle Cache
-
         uses: actions/cache@v3
         with:
           path: |
@@ -32,7 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: 🔓 Grant KVM Permissions
+      - name: Grant KVM Permissions
         run: sudo chown "$USER":kvm /dev/kvm || true
 
       - name: Grant execute permission for gradlew
@@ -43,21 +40,15 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 33
-
           arch: x86_64
           target: default
           profile: Nexus 6
           emulator-boot-timeout: 360
-
-
           script: ./gradlew connectedAndroidTest
 
-
       - name:  Upload test results
-
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-
           path: app/build/reports/androidTests/connected/
