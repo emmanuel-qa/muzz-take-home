@@ -156,6 +156,7 @@ Centralized in `TestData.kt`:
 ```kotlin
 // Valid credentials
 USERNAME: "user"
+
 PASSWORD: "password"
 ```
 ---
@@ -308,7 +309,7 @@ Given - The dating profiles are successfully loaded on the screen
 
 When - The user likes one or more of the profiles
 
-Then - after 5 lkes/passes, the user should see the correct number of profiles liked
+Then - after 5 likes/passes, the user should see the correct number of profiles liked
 
 #### Login credentials:
 #### user: user
