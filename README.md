@@ -184,17 +184,6 @@ PASSWORD: "password"
 
 ---
 
-### Manual Testing
-
-Comprehensive manual test report: `docs/MANUAL_TEST_REPORT.md`
-
-**Includes:**
-- Network error scenarios (requires WiFi toggle)
-- Session persistence (requires app restart)
-- Edge cases and exploratory testing
-- Bug reports with screenshots
-
----
 
 ### Future Enhancements
 
