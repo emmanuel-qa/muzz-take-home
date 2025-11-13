@@ -28,7 +28,8 @@ fun ProfilesScreen(
         Column(
             Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(16.dp)
+                .testTag("profiles_screen"),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             // Top bar
@@ -91,7 +92,8 @@ fun ProfilesScreen(
                 Row(
                     Modifier
                         .fillMaxWidth()
-                        .padding(top = 12.dp),
+                        .padding(top = 12.dp)
+                        .testTag("action_button_row"),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -99,6 +101,7 @@ fun ProfilesScreen(
                         onClick = { viewModel.pass() },
                         modifier = Modifier
                             .weight(1f)
+                            .testTag("button_pass")
                             .semantics { contentDescription = "Pass Profile" }
                     ) { Text("Pass") }
 
@@ -106,6 +109,7 @@ fun ProfilesScreen(
                         onClick = { viewModel.like() },
                         modifier = Modifier
                             .weight(1f)
+                            .testTag("button_like")
                             .semantics { contentDescription = "Like Profile" }
                     ) { Text("Like") }
                 }
@@ -145,12 +149,14 @@ private fun ProfileCard(
         Text(
             text = profile.age,
             style = MaterialTheme.typography.labelLarge,
+            modifier = Modifier.testTag("profile_age")
         )
         Spacer(Modifier.height(4.dp))
         Text(
             text = "$index of $total",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.testTag("profile_counter")
         )
     }
 }
@@ -166,10 +172,12 @@ private fun FinishedState(liked: Int, passed: Int, onReset: () -> Unit) {
         Text(
             "You're all caught up!",
             style = MaterialTheme.typography.headlineSmall,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            modifier = Modifier.testTag("finished_title")
         )
         Spacer(Modifier.height(8.dp))
-        Text("Liked: $liked • Passed: $passed")
+        Text("Liked: $liked • Passed: $passed",
+            modifier = Modifier.testTag("likes_count_text"))
         Spacer(Modifier.height(16.dp))
         Button(
             onClick = onReset,
@@ -189,7 +197,8 @@ private fun ErrorState(message: String, onRetry: () -> Unit) {
         Text(
             "Oops: $message",
             style = MaterialTheme.typography.titleMedium,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            modifier = Modifier.testTag("error_message_text")
         )
         Spacer(Modifier.height(16.dp))
         Button(

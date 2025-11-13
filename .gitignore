@@ -1,0 +1,26 @@
+# Build files
+build/
+.gradle/
+*.apk
+*.ap_
+*.dex
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+local.properties
+
+# Keystore
+keystore.properties
+*.jks
+
+# Logs
+*.log
+
+# Test results
+app/build/reports/
+app/build/outputs/
+
+# Sensitive
+gradle.properties

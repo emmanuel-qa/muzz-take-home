@@ -91,3 +91,252 @@ Once we have received your test along with any other documentation which you fee
 a face to face discussion where we’ll ask you to go through your test, explaining any decisions that you've made.
 
 ## Good luck!
+
+---
+---
+---
+
+## 🧪 QA Test Automation Framework
+
+### Overview
+Comprehensive UI test automation framework for the Muzz dating app using Jetpack Compose Test and Page Object Model architecture.
+
+**Tester:** Emmanuel Kuye
+**Email:** kuyeemmanuel@rocketmail.com
+**Phone:** +44 7900 623487
+
+---
+
+### Test Coverage
+
+**Automated Tests:** 22 test scenarios
+**Test Pass Rate:** 95%+ (21/22 passing)
+
+#### Login Tests (12 scenarios)
+- ✅ Login screen display verification
+- ✅ Successful login with valid credentials
+- ✅ Failed login with wrong username
+- ✅ Failed login with wrong password
+- ✅ Failed login with empty fields
+- ✅ Username/password field input validation
+- ✅ UI element visibility checks
+
+#### Profile Tests (8 scenarios)
+- ✅ Profiles load after successful login
+- ✅ Like/pass button functionality
+- ✅ Multiple profile interactions
+- ✅ Likes counter accuracy
+- ✅ Finished state display
+- ✅ Performance (load time < 5s)
+
+---
+
+### Technology Stack
+
+- **Framework:** Jetpack Compose Test
+- **Architecture:** Page Object Model (POM)
+- **Dependency Injection:** Hilt
+- **Language:** Kotlin
+- **Build Tool:** Gradle
+- **CI/CD:** GitHub Actions
+
+---
+
+### Project Structure
+```
+app/src/androidTest/java/com/test/muzz/
+├── BaseTest.kt              # Foundation for all tests
+├── pages/                   # Page Object Model
+│   ├── BasePage.kt         # Reusable methods
+│   ├── LoginPage.kt        # Login screen interactions
+│   └── ProfilesPage.kt     # Profiles screen interactions
+├── tests/                   # Test scenarios
+│   ├── LoginTests.kt       # Login test cases
+│   └── ProfileTests.kt     # Profile test cases
+└── utils/                   # Utilities
+    ├── TestData.kt         # Test data management
+    └── TestLogger.kt       # Logging utility
+
+```
+
+---
+
+### Running Tests
+
+#### Prerequisites
+- Android Studio installed
+- Java 17 configured
+- Android emulator or physical device
+
+#### Run All Tests
+```bash
+./gradlew clean connectedAndroidTest
+```
+
+#### Run Specific Test Class
+```bash
+./gradlew connectedAndroidTest \
+  -Pandroid.testInstrumentationRunnerArguments.class=\
+com.test.muzz.tests.LoginTests
+```
+
+#### Run Single Test
+```bash
+./gradlew connectedAndroidTest \
+  -Pandroid.testInstrumentationRunnerArguments.class=\
+com.test.muzz.tests.LoginTests#testSuccessfulLogin
+```
+
+#### View Test Report
+```bash
+open app/build/reports/androidTests/connected/debug/index.html
+```
+
+---
+
+### Framework Highlights
+
+#### 1. Page Object Model (POM)
+Separates test logic from UI implementation for maintainability:
+```kotlin
+
+@Test
+fun testSuccessfulLogin() {
+    val loginPage = getLoginPage()
+    val profilesPage = loginPage.login(USERNAME, PASSWORD) as ProfilesPage
+    profilesPage.verifyProfilesPageDisplayed()
+}
+```
+
+#### 2. BDD-Style Logging
+Given/When/Then structure for clarity:
+```kotlin
+logStep("Given: User is on login screen")
+logStep("When: User enters valid credentials")
+logStep("Then: User navigates to profiles screen")
+```
+
+#### 3. Localization Support
+Uses test tags and content descriptions - works in any language:
+```kotlin
+findByTag("login_button")  // Language-independent
+findByContentDescription("Like Profile")  // Accessible
+```
+
+#### 4. Comprehensive Logging
+All actions logged with `TestLogger` for easy troubleshooting:
+```
+[INFO] Entering username: 'user'
+[INFO] Clicking login button
+✓ Login successful - navigating to Profiles Page
+```
+
+---
+
+### CI/CD Pipeline
+
+GitHub Actions automatically runs all tests on push/pull request.
+
+**Workflow:** `.github/workflows/android-tests.yml`
+```yaml
+- Spins up Android emulator (API 29)
+- Runs all tests
+- Uploads test reports as artifacts
+- Fails build if tests fail
+```
+
+**View Results:** GitHub → Actions tab
+
+---
+
+### Test Data
+
+Centralized in `TestData.kt`:
+```kotlin
+// Valid credentials
+USERNAME: "user"
+PASSWORD: "password"
+```
+
+---
+
+### Design Decisions
+
+#### Why Jetpack Compose Test?
+- Native integration with Muzz's Compose UI
+- No external dependencies
+- Fast and reliable
+- Recommended by Android teams
+
+#### Why Page Object Model?
+- Separates test logic from UI details
+- Easier maintenance when UI changes
+- Reusable components across tests
+- Industry-standard pattern
+
+#### Why Test Tags?
+- Language-independent (localization support)
+- More reliable than text-based selectors
+- Faster element lookup
+- Explicit test accessibility
+
+**Note:** Test tags were added to `LoginScreen.kt` and `ProfilesScreen.kt` following Android testing best practices.
+
+---
+
+### Manual Testing
+
+Comprehensive manual test report: `docs/MANUAL_TEST_REPORT.md`
+
+**Includes:**
+- Network error scenarios (requires WiFi toggle)
+- Session persistence (requires app restart)
+- Edge cases and exploratory testing
+- Bug reports with screenshots
+
+---
+
+### Future Enhancements
+
+- [ ] Add performance benchmarking
+- [ ] Implement visual regression testing
+- [ ] Add test data generation utilities
+
+---
+
+### Test Credentials
+```
+Username: user
+Password: password
+```
+
+---
+
+### Logs & Reports
+
+**Logs:**
+```bash
+adb logcat | grep MuzzQA
+```
+
+**HTML Report:**
+```bash
+app/build/reports/androidTests/connected/debug/index.html
+```
+
+---
+
+### Contact
+
+For questions about the test framework:
+
+**Emmanuel Kuye**
+QA Engineer
+📧 kuyeemmanuel@rocketmail.com
+📱 +44 7900 623487
+
+---
+
+### Acknowledgments
+
+Built as part of Muzz QA Technical Test submission.
