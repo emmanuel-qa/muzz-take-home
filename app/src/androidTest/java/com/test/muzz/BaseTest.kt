@@ -44,7 +44,6 @@ abstract class BaseTest {
         try {
             logger.testPassed(testName.methodName)
         } catch (e: Exception) {
-            // Test failed - capture screenshot
             logger.testFailed(testName.methodName, e.message ?: "Unknown error")
             throw e
         }
@@ -59,7 +58,7 @@ abstract class BaseTest {
         return try {
             val stackTrace = Thread.currentThread().stackTrace
             val testMethod = stackTrace.firstOrNull {
-                it.className.contains("Test") && it.methodName.startsWith("given")
+                it.className.contains("Test")
             }
             testMethod?.methodName ?: "UnknownTest"
         } catch (e: Exception) {
