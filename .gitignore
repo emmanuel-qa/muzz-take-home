@@ -22,5 +22,3 @@ keystore.properties
 app/build/reports/
 app/build/outputs/
 
-# Sensitive
-gradle.properties
